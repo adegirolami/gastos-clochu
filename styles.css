@@ -57,3 +57,19 @@ body {
 div {
     margin-bottom: 25px; /* Aumenta el espaciado si es necesario */
 }
+
+@media (max-width: 600px) {
+    body {
+        margin: 20px;
+    }
+
+    input[type="number"], button {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .input-container {
+        flex-direction: column;
+    }
+}
