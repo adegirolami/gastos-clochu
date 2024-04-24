@@ -18,6 +18,13 @@ input[type="number"], button {
     border: none;
     color: #FFFFFF; /* White text */
     border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"]:focus {
+    border-color: #F09E56;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+    outline: none;
 }
 
 button {
@@ -31,6 +38,8 @@ button {
 
 button:hover {
     background-color: #555555; /* Lighter on hover */
+    transform: scale(1.05);
+}
 }
 
 label {
@@ -39,4 +48,12 @@ label {
 
 #resultado {
     margin-top: 20px; /* Ajusta este valor según tus preferencias */
+}
+
+body {
+    background: linear-gradient(to right, #121212, #1c1c1c);
+}
+
+div {
+    margin-bottom: 25px; /* Aumenta el espaciado si es necesario */
 }
