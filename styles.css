@@ -1,0 +1,41 @@
+/* styles.css */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 40px;
+    background-color: #121212; /* Dark background */
+    color: #E0E0E0; /* Light text */
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+input[type="number"], button {
+    padding: 10px;
+    margin-left: 10px;
+    background: #333333; /* Darker elements */
+    border: none;
+    color: #FFFFFF; /* White text */
+    border-radius: 5px;
+}
+
+button {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold; /* Hace que el texto sea en negrita */
+    font-size: 16px; /* Ajusta este valor según tus necesidades */
+    margin-left: 0px; /* Ajusta este valor según tus necesidades */
+    font-family: 'Montserrat', sans-serif;
+}
+
+button:hover {
+    background-color: #555555; /* Lighter on hover */
+}
+
+label {
+    color: #BDBDBD; /* Grey text for labels */
+}
+
+#resultado {
+    margin-top: 20px; /* Ajusta este valor según tus preferencias */
+}
