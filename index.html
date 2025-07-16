@@ -2,27 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gastos Mensuales Clochu</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Gastos Mensuales Clochu</h1>
-    <div>
-        <label for="misGastos">Alejandro:</label>
-        <input type="number" id="misGastos" required>
-    </div>
-    <div>
-        <label for="gastosCompanera">Lucila:</label>
-        <input type="number" id="gastosCompanera" required>
-    </div>
-    <button onclick="calcularDiferencia()">Calcular</button>
-    <div id="resultado"></div>
+    <div class="container">
+        <header>
+            <h1>💰 Gastos Clochu</h1>
+            <p>Calculadora de gastos compartidos</p>
+        </header>
 
-    <h2>Historial de Cálculos</h2>
-    <button id="limpiarHistorialBtn" onclick="limpiarHistorial()">Limpiar Historial</button>
-    <div id="historialCalculos">
-        <!-- El historial se cargará aquí por JavaScript -->
+        <main>
+            <form class="expense-form">
+                <div class="input-group">
+                    <label for="misGastos">Alejandro</label>
+                    <div class="input-wrapper">
+                        <span class="currency">$</span>
+                        <input type="number" id="misGastos" required min="0" step="0.01" 
+                               placeholder="0.00" aria-label="Gastos de Alejandro">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="gastosCompanera">Lucila</label>
+                    <div class="input-wrapper">
+                        <span class="currency">$</span>
+                        <input type="number" id="gastosCompanera" required min="0" step="0.01" 
+                               placeholder="0.00" aria-label="Gastos de Lucila">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="calculate-btn" onclick="calcularDiferencia()" 
+                            aria-label="Calcular diferencia de gastos">
+                        ✨ Calcular
+                    </button>
+                    <button type="button" class="restart-btn" onclick="reiniciarCalculadora()" 
+                            aria-label="Limpiar campos y reiniciar">
+                        🔄 Reiniciar
+                    </button>
+                </div>
+            </form>
+
+            <div id="resultado" class="result" role="status" aria-live="polite"></div>
+        </main>
     </div>
 
     <script src="script.js"></script>

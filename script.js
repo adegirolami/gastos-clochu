@@ -1,7 +1,22 @@
 // script.js
 function calcularDiferencia() {
-    const misGastos = parseFloat(document.getElementById('misGastos').value);
-    const gastosCompanera = parseFloat(document.getElementById('gastosCompanera').value);
+    const misGastosInput = document.getElementById('misGastos').value.trim();
+    const gastosCompaneraInput = document.getElementById('gastosCompanera').value.trim();
+
+    // Input validation
+    if (!misGastosInput || !gastosCompaneraInput) {
+        alert('Por favor, ingresa ambos valores.');
+        return;
+    }
+
+    const misGastos = parseFloat(misGastosInput);
+    const gastosCompanera = parseFloat(gastosCompaneraInput);
+
+    // Validate that inputs are valid numbers and not negative
+    if (isNaN(misGastos) || isNaN(gastosCompanera) || misGastos < 0 || gastosCompanera < 0) {
+        alert('Por favor, ingresa valores numéricos válidos (no negativos).');
+        return;
+    }
 
     const totalGastos = misGastos + gastosCompanera;
     const mediaGastos = totalGastos / 2;
@@ -26,109 +41,33 @@ function calcularDiferencia() {
 
     explicacion += '</ul>';
 
-    // Guardar en localStorage
-    const entradaHistorial = {
-        alejandro: misGastos, // misGastos es un número
-        lucila: gastosCompanera, // gastosCompanera es un número
-        mensaje: resultado, // resultado es un string
-        timestamp: new Date().toISOString()
-    };
-    agregarAlHistorial(entradaHistorial);
 
-    document.getElementById('resultado').innerHTML = `<strong>${resultado}</strong><br>${explicacion}`;
+    // Safe way to display results without XSS risk
+    const resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.innerHTML = ''; // Clear previous content
+    
+    const resultadoStrong = document.createElement('strong');
+    resultadoStrong.textContent = resultado;
+    
+    const br = document.createElement('br');
+    
+    const explicacionDiv = document.createElement('div');
+    explicacionDiv.innerHTML = explicacion; // This is safe as explicacion is generated internally
+    
+    resultadoDiv.appendChild(resultadoStrong);
+    resultadoDiv.appendChild(br);
+    resultadoDiv.appendChild(explicacionDiv);
 }
 
-function agregarAlHistorial(entradaHistorial) {
-    const HISTORIAL_KEY = 'historialGastosClochu';
-    let historial = [];
-    try {
-        const historialGuardado = localStorage.getItem(HISTORIAL_KEY);
-        if (historialGuardado) {
-            historial = JSON.parse(historialGuardado);
-        }
-    } catch (e) {
-        console.error("Error al parsear historial de localStorage:", e);
-        historial = []; // Empezar con un array vacío si hay error
-    }
-
-    historial.push(entradaHistorial);
-
-    try {
-        localStorage.setItem(HISTORIAL_KEY, JSON.stringify(historial));
-    } catch (e) {
-        console.error("Error al guardar historial en localStorage:", e);
-    }
-    cargarYMostrarHistorial(); // Actualizar la vista del historial
+function reiniciarCalculadora() {
+    // Limpiar los campos de entrada
+    document.getElementById('misGastos').value = '';
+    document.getElementById('gastosCompanera').value = '';
+    
+    // Limpiar el resultado
+    document.getElementById('resultado').innerHTML = '';
+    
+    // Enfocar el primer campo para facilitar el uso
+    document.getElementById('misGastos').focus();
 }
 
-function cargarYMostrarHistorial() {
-    const HISTORIAL_KEY = 'historialGastosClochu';
-    const historialDiv = document.getElementById('historialCalculos');
-
-    if (!historialDiv) {
-        console.error("Elemento con ID 'historialCalculos' no encontrado.");
-        return;
-    }
-
-    let historial = [];
-    try {
-        const historialGuardado = localStorage.getItem(HISTORIAL_KEY);
-        if (historialGuardado) {
-            historial = JSON.parse(historialGuardado);
-        }
-    } catch (e) {
-        console.error("Error al parsear historial de localStorage:", e);
-        historialDiv.innerHTML = '<p>Error al cargar el historial.</p>';
-        return;
-    }
-
-    historialDiv.innerHTML = ''; // Limpiar contenido anterior
-
-    if (historial.length === 0) {
-        historialDiv.innerHTML = '<p>No hay historial de cálculos.</p>';
-        return;
-    }
-
-    const ul = document.createElement('ul');
-    // Iterar en orden inverso para mostrar el más nuevo primero
-    for (let i = historial.length - 1; i >= 0; i--) {
-        const entrada = historial[i];
-        const li = document.createElement('li');
-        
-        const fecha = new Date(entrada.timestamp).toLocaleString('es-ES', { 
-            day: 'numeric', month: 'long', year: 'numeric', 
-            hour: '2-digit', minute: '2-digit' 
-        });
-
-        const alejandroGasto = (typeof entrada.alejandro === 'number') ? entrada.alejandro.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) : 'N/A';
-        const lucilaGasto = (typeof entrada.lucila === 'number') ? entrada.lucila.toLocaleString('en-US', {style: 'currency', currency: 'USD'}) : 'N/A';
-
-        li.innerHTML = `
-            <strong>Fecha:</strong> ${fecha}<br>
-            <strong>Alejandro:</strong> ${alejandroGasto} | 
-            <strong>Lucila:</strong> ${lucilaGasto}<br>
-            <strong>Resultado:</strong> ${entrada.mensaje}
-        `;
-        ul.appendChild(li);
-    }
-    historialDiv.appendChild(ul);
-}
-
-// Cargar historial cuando el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', cargarYMostrarHistorial);
-
-function limpiarHistorial() {
-    const HISTORIAL_KEY = 'historialGastosClochu';
-    if (confirm('¿Estás seguro de que deseas borrar todo el historial? Esta acción no se puede deshacer.')) {
-        try {
-            localStorage.removeItem(HISTORIAL_KEY);
-            console.log('Historial borrado de localStorage.');
-        } catch (e) {
-            console.error("Error al borrar el historial de localStorage:", e);
-            // Opcionalmente, mostrar un mensaje de error al usuario
-            alert('Error al intentar borrar el historial.');
-            return; // No continuar si hay error
-        }
-        cargarYMostrarHistorial(); // Actualizar la vista del historial
-    }
-}

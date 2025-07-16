@@ -1,148 +1,257 @@
-/* styles.css */
+/* Mobile-First Responsive Design */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
-    margin: 40px;
-    background-color: #121212; /* Dark background */
-    color: #E0E0E0; /* Light text */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #333;
 }
 
-div {
-    margin-bottom: 20px;
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-input[type="number"], button {
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #5a67d8;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: #718096;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.expense-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency {
+    position: absolute;
+    left: 1rem;
+    color: #718096;
+    font-weight: 600;
+    z-index: 1;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 1rem 1rem 1rem 2.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.1rem;
     font-family: 'Montserrat', sans-serif;
-    padding: 10px;
-    margin-left: 10px;
-    background: #333333; /* Darker elements */
-    border: none;
-    color: #FFFFFF; /* White text */
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-input[type="number"]:focus {
-    border-color: #F09E56;
-    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+    background: #fff;
+    transition: all 0.3s ease;
     outline: none;
 }
 
-button {
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold; /* Hace que el texto sea en negrita */
-    font-size: 16px; /* Ajusta este valor según tus necesidades */
-    margin-left: 0px; /* Ajusta este valor según tus necesidades */
-    font-family: 'Montserrat', sans-serif;
+input[type="number"]:focus {
+    border-color: #5a67d8;
+    box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.1);
+    transform: translateY(-2px);
 }
 
-button:hover {
-    background-color: #555555; /* Lighter on hover */
-    transform: scale(1.05);
-}
-/* } This closing brace was likely a typo, removing it. */
-
-label {
-    color: #BDBDBD; /* Grey text for labels */
+input[type="number"]::placeholder {
+    color: #a0aec0;
 }
 
-#resultado {
-    margin-top: 20px; /* Ajusta este valor según tus preferencias */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-body {
-    background: linear-gradient(to right, #121212, #1c1c1c);
-}
-
-div {
-    margin-bottom: 25px; /* Aumenta el espaciado si es necesario */
-}
-
-@media (max-width: 600px) {
-    body {
-        margin: 20px;
-    }
-
-    input[type="number"], button {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .input-container {
-        flex-direction: column;
-    }
-}
-
-/* Styling for H2 headings */
-h2 {
-    color: #E0E0E0; /* Light text, consistent with body */
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-/* Styling for the History Section */
-#historialCalculos {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #1c1c1c; /* Slightly lighter than body background */
-    border-radius: 5px;
-}
-
-#historialCalculos ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-#historialCalculos li {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #282828; /* Darker than #historialCalculos background, lighter than body */
-    border: 1px solid #333333;
-    border-radius: 4px;
-    padding: 15px;
-    margin-bottom: 10px;
-    color: #E0E0E0; /* Light text */
-    font-size: 0.9em;
-    line-height: 1.6;
-}
-
-#historialCalculos li strong {
-    color: #F09E56; /* Accent color for emphasis */
-}
-
-/* Styling for the "No hay historial..." message if it's a paragraph */
-#historialCalculos p {
-    font-family: 'Montserrat', sans-serif;
-    color: #BDBDBD; /* Grey text, similar to labels */
-    padding: 10px;
-    text-align: center;
-}
-
-/* Styling for the Clear History Button */
-#limpiarHistorialBtn {
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 15px; /* Adjusted padding */
-    background: #7D3C3C; /* Dark red/maroon for destructive action */
+.calculate-btn, .restart-btn {
+    flex: 1;
     border: none;
-    color: #FFFFFF; /* White text */
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    font-weight: bold;
-    font-size: 14px; /* Slightly smaller or same as other button */
-    margin-top: 0px; /* Align with h2 or adjust as needed */
-    margin-bottom: 10px; /* Space before the history list */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-#limpiarHistorialBtn:hover {
-    background-color: #994A4A; /* Lighter red on hover */
-    transform: scale(1.03);
+.calculate-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
 }
 
-#limpiarHistorialBtn:active {
-    background-color: #6B2F2F; /* Darker red on active/click */
-    transform: scale(0.98);
+.calculate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.restart-btn {
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    color: white;
+}
+
+.restart-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(245, 101, 101, 0.4);
+}
+
+.calculate-btn:active, .restart-btn:active {
+    transform: translateY(-1px);
+}
+
+.result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 12px;
+    border-left: 4px solid #5a67d8;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.result:empty {
+    display: none;
+}
+
+.result strong {
+    display: block;
+    font-size: 1.2rem;
+    color: #2d3748;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.result ul {
+    list-style: none;
+    padding: 0;
+}
+
+.result li {
+    padding: 0.5rem 0;
+    color: #4a5568;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.result li:last-child {
+    border-bottom: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablet styles */
+@media (min-width: 481px) {
+    .container {
+        max-width: 500px;
+        padding: 3rem;
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .expense-form {
+        gap: 2rem;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    body {
+        padding: 40px;
+    }
+    
+    .container {
+        max-width: 600px;
+        padding: 4rem;
+    }
+    
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .input-group {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .input-group label {
+        min-width: 100px;
+        margin-bottom: 0;
+    }
+    
+    .input-wrapper {
+        flex: 1;
+    }
+    
+    .calculate-btn, .restart-btn {
+        font-size: 1.1rem;
+        padding: 1rem 2rem;
+    }
+}
+
+/* Large desktop styles */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 700px;
+    }
+    
+    header h1 {
+        font-size: 3rem;
+    }
 }
