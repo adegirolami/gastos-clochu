@@ -47,6 +47,17 @@
             </form>
 
             <div id="resultado" class="result" role="status" aria-live="polite"></div>
+
+            <div id="historial-container" class="history-container" style="display: none;">
+                <h2>Historial de Cálculos</h2>
+                <ul id="historial-lista">
+                    <!-- Los cálculos históricos se insertarán aquí -->
+                </ul>
+                <button type="button" class="clear-history-btn" onclick="limpiarHistorial()"
+                        aria-label="Limpiar historial de cálculos">
+                    🗑️ Limpiar Historial
+                </button>
+            </div>
         </main>
     </div>
 
