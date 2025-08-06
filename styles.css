@@ -193,6 +193,94 @@ input[type="number"]::placeholder {
     }
 }
 
+/* History Section Styles */
+.history-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 12px;
+    border-left: 4px solid #f56565; /* A different color to distinguish from the result */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.history-container h2 {
+    text-align: center;
+    color: #4a5568;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+#historial-lista {
+    list-style: none;
+    padding: 0;
+    max-height: 400px; /* Limit height and make it scrollable */
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+}
+
+#historial-lista li {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#historial-lista li:last-child {
+    margin-bottom: 0;
+}
+
+.fecha {
+    font-size: 0.8rem;
+    color: #718096;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.detalle {
+    font-size: 0.95rem;
+    color: #4a5568;
+}
+
+.detalle strong {
+    font-weight: 700;
+}
+
+.resultado-historial {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-top: 0.25rem;
+}
+
+.clear-history-btn {
+    width: 100%;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #cbd5e0 0%, #e2e8f0 100%);
+    color: #4a5568;
+}
+
+.clear-history-btn:hover {
+    background: linear-gradient(135deg, #e2e8f0 0%, #f7fafc 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+
 /* Tablet styles */
 @media (min-width: 481px) {
     .container {
